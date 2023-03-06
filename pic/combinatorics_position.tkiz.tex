@@ -1,0 +1,44 @@
+\begin{tikzpicture}[node distance=1.5cm,auto]
+\tikzstyle{recfill}=[draw, fill=blue!10, minimum size=2em]
+\tikzstyle{rect}=[draw,minimum size=2em]
+\tikzstyle{inv}=[draw,minimum size=2em]
+% \tikzstyle{init} = [pin edge={to-,thin,black}]
+\node (c) [recfill] {Комбинаторика};
+\node (s) [below of=c, rect] {Мат.стат.};
+\node (p) [left of=s, node distance=3.5cm, rect] {Теор.вер.};
+\node (a) [right of=s, node distance=3.5cm, rect] {\small Алгоритмы и с.д.};
+\node (m) [below of=p,rect] {Мат.ан.};
+\node (l) [below of=s, rect] {Лин.ал.};
+\node (inv) [below of=a] {};
+\node (ml) [below of=inv, rect] {\small Machine Learning};
+
+\path[->] (c) edge node {} (p);
+\path[->] (c) edge node {} (a);
+\path[->] (p) edge node {} (s);
+\path[->] (m) edge node {} (s);
+\path[->] (s) edge node {} (a);
+\path[->] (m) edge node {} (a);
+\path[->] (m) edge node {} (p);
+\path[->] (m) edge node {} (l);
+\path[->] (l) edge node {} (ml);
+\path[->] (s) edge node {} (ml);
+\path[->] (a) edge node {} (ml);
+
+\node (sa) [below of=l, rect] {\small Предметная область};
+\node (ca) [below of=m, rect] {\small Computer Science};
+
+\node (ds) [below of=sa, rect] {\small Data Science};
+
+\path[->] (ml) edge node {} (ds);
+\path[->] (sa) edge node {} (ds);
+\path[->] (ca) edge node {} (ds);
+
+% \node [int, pin={[init]above:$v_0$}] (a) {$\frac{1}{s}$};
+% \node (b) [left of=a,node distance=2cm, coordinate] {a};
+% \node [int, pin={[init]above:$p_0$}] (c) [right of=a] {$\frac{1}{s}$};
+% \node [coordinate] (end) [right of=c, node distance=2cm]{};
+% \path[->] (b) edge node {$a$} (a);
+% \path[->] (a) edge node {$v$} (c);
+% \draw[->] (c) edge node {$p$} (end) ;
+\end{tikzpicture}
+

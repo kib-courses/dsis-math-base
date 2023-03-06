@@ -1,0 +1,124 @@
+\input{./../header/kib.tex}
+\input{./../header/user.tex}  
+
+% TODO ! напишите здесь название вашей лекции
+\title{Лекция 1. Комбинаторика часть 1.}
+% TODO ! замените на дату проведения этой лекции. Например \date{14 апреля 2019}
+\date{<TODO>}
+% \logo{\href{https://t.me/kibinfo}{\includegraphics[width=.05\textwidth]{./../pic/kib_logo.png}}}
+\author{Слипенчук Павел Владимирович}
+\institute{\centering \includegraphics[width=.2\textwidth]{./../pic/kib_logo.png} \\ Москва,\\ \href{https://t.me/kibinfo}{\textbf{КИБ}} }
+% \titlegraphic{\href{https://t.me/kibinfo}{\includegraphics[width=.05\textwidth]{./../pic/kib_logo.png}}}
+
+% TODO ! замените https://github.com/kib-courses/latex_templates на ссылку ВАШЕГО спецкурса!
+\titlegraphic{\small \href{https://github.com/kib-courses/dsis-math-base}{Базовая математическая подготовка для Data Science}}
+
+\begin{document}
+  \maketitle
+    
+  \begin{frame}{План лекции}\label{frame:plan}
+  	% TODO ! добавте в план все ваши секции, кроме "Вопросы для самопроверки", "Домашнее задание" и "Список материалов"
+    \begin{enumerate}
+	\item \nameref{section:why_combinatorics}
+	\item \nameref{section:main_combinatorics_sxems}
+	% \item \nameref{section:tkiz}
+	% \item \nameref{section:another}
+	\end{enumerate}
+ \end{frame}
+    
+\section{Зачем нужна комбинаторика в DS}\label{section:why_combinatorics}
+\begin{frame}
+\termdef{Комбинаторный анализ (Комбинаторика)} — раздел математики, посвящённый 
+решению задач выбора и расположения элементов некоторого, обычно конечного, множества
+в соответствии с установленными правилами (схемами). 
+
+Каждое такое правило определяет способ построения из элементов исходного множества некоторой конструкции, 
+называемой \termdef{комбинаторной конфигурацией}. 
+\end{frame}
+
+
+\begin{frame}{Примеры задач комбинаторики}
+
+\textbf{Простая задача.}
+В школе танго 8 парней 
+и 12 девушек.
+Сколько существует всевозможных пар?
+
+\begin{equation*}
+8 \cdot 12 = 96
+\end{equation*}
+
+\textbf{Сложная задача.}
+TODO
+
+\end{frame}
+
+
+\begin{frame}
+	Road Map Data Science как мат.дисциплины \(кратко\)
+	\begin{center}
+		\begin{figure}
+			\input{../pic/combinatorics_position.tkiz.tex}
+			\caption{Место комбинаторики в DS}
+		\end{figure}	
+	\end{center}
+	
+\end{frame}
+
+\section{Основные комбинаторные схемы}\label{section:main_combinatorics_sxems}
+
+\begin{frame}{Правило суммы и правило произведения}
+TODO	
+\end{frame}
+
+\begin{frame}{Размещение (выборка без возвращения)}
+Нужно из
+$n$
+различных элементов 
+выбрать \textbf{упорядоченный}
+ряд из $k$
+элементов. 
+(При этом, очевидно, что $k <=n$,
+иначе задача не имеет решения.)
+
+Сколько существует таких способов?   
+
+Примеры:
+1. TODO
+
+\begin{equation}
+A_n^k = n \cdot (n-1) \cdot (n-2) \cdot ... \cdot (n-k-1) = \frac{n!} {\left(n-k\right)!}
+\end{equation}    
+
+\вопрос{Как вывести эту формулу?}
+
+\end{frame}
+
+\begin{frame}
+TODO 
+\begin{equation*}
+A_n^k = n \cdot (n-1) \cdot (n-2) \cdot ... \cdot (n-k-1)
+\end{equation*}  
+\end{frame}
+
+\begin{frame}{Перестановка}
+\termdef{Перестановка} -- 
+частный случай \term{размещения}, 
+когда $n=k$ 
+\end{frame}
+
+
+\section{Вопросы для самопроверки}
+
+% \begin{frame}
+% TODO
+% \end{frame}
+
+\section{Список материалов}
+
+% \begin{frame}
+% TODO
+% \end{frame}
+
+  
+\end{document}
