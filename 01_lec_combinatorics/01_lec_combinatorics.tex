@@ -20,7 +20,9 @@
   	% TODO ! добавте в план все ваши секции, кроме "Вопросы для самопроверки", "Домашнее задание" и "Список материалов"
     \begin{enumerate}
 	\item \nameref{section:why_combinatorics}
+	\item \nameref{section:principles}
 	\item \nameref{section:main_combinatorics_sxems}
+	\item \nameref{section:binom}
 	% \item \nameref{section:tkiz}
 	% \item \nameref{section:another}
 	\end{enumerate}
@@ -82,8 +84,10 @@
 \begin{frame}{<<Задача о зёрнах на шахматной доске>>}
 
 \begin{equation*}
-C = 1 + 2 + 4 + 8 + 16 + ... + 2^63 = \sum_{i=0}^{i=63} 2^i = 2^{64} - 1
-=dfdf
+\begin{matrix}
+C = 1 + 2 + 4 + 8 + 16 + ... + 2^{63} = \sum_{i=0}^{i=63} 2^i = 2^{64} - 1 = \\
+= 18~446~744~073~709~551~615
+\end{matrix}
 \end{equation*}
 
 Много или мало $2^{64}$ зёрен пшеницы ?
@@ -91,8 +95,8 @@ C = 1 + 2 + 4 + 8 + 16 + ... + 2^63 = \sum_{i=0}^{i=63} 2^i = 2^{64} - 1
 В 2021 году было произведено в мире 770 млн.тонн пшеницы.
 Вес одного зерна примерно $50$ милиграмм.
 
-Вопрос: сколько тысячелетий должно пройти, чтобы Сисса получил 
-свою оплату?
+\дз{Вопрос: сколько тысячелетий люди должны перестать есть хлеб, чтобы Сисса получил 
+свою оплату?} :)
 
 \end{frame}
 
@@ -105,8 +109,10 @@ C = 1 + 2 + 4 + 8 + 16 + ... + 2^63 = \sum_{i=0}^{i=63} 2^i = 2^{64} - 1
 понимать что такое МНОГО, ОЧЕНЬ МНОГО.
 
 Например:
-1. <<Давайте мониторить все видео на youtube с целью проверки на стеганографию!>>
-2. <<ChatGPT заменит всех в call-центре!>>
+\begin{enumerate}
+	\item ~<<Давайте мониторить все видео на youtube с целью проверки на стеганографию!>>
+	\item ~<<ChatGPT скоро научиться отвечать на все вопросы!>>
+\end{enumerate}
  	
 \end{frame}
 
@@ -122,9 +128,9 @@ C = 1 + 2 + 4 + 8 + 16 + ... + 2^63 = \sum_{i=0}^{i=63} 2^i = 2^{64} - 1
 	
 \end{frame}
 
-\section{Основные комбинаторные схемы}\label{section:main_combinatorics_sxems}
+\section{Комбинаторные принципы}\label{section:principles}
 
-\begin{frame}{Комбинаторные принципы}
+\begin{frame}{Два основных правила}
 \termdef{Правило суммы. (Правило <<ИЛИ>>)}
 Если элемент $A$ можно выбрать $a$ способами,
 а элемент $B$ можно выбрать $b$ способами,
@@ -139,9 +145,9 @@ C = 1 + 2 + 4 + 8 + 16 + ... + 2^63 = \sum_{i=0}^{i=63} 2^i = 2^{64} - 1
 
 \end{frame}
 
-\begin{frame}{Комбинаторные принципы}
+\begin{frame}{Формула включения-исключения}
 
-\termdef{Формула включения-исключения}
+%\termdef{Формула включения-исключения}
 
 Посчитаем мощность множества (количество элементов в множестве)
 вида $\left| A \cup B \right|$
@@ -159,13 +165,13 @@ C = 1 + 2 + 4 + 8 + 16 + ... + 2^63 = \sum_{i=0}^{i=63} 2^i = 2^{64} - 1
 
 \end{frame}
 
-\begin{frame}{Комбинаторные принципы. Принцип Дирихле}
+\begin{frame}{Принцип Дирихле}
 <<Если кролики рассажены в клетки и число кроликов больше числа клеток, то хотя бы в одной из клеток находится более одного кролика.>>
 
 <<Если число клеток больше числа кроликов, то как минимум одна клетка пуста.>>
 \end{frame}
 
-\begin{frame}{Комбинаторные принципы. Out of scope}
+\begin{frame}{Out of scope}
 
 Ряд комбинаторных вещей мы не рассматриваем:
 \begin{enumerate}
@@ -177,6 +183,9 @@ C = 1 + 2 + 4 + 8 + 16 + ... + 2^63 = \sum_{i=0}^{i=63} 2^i = 2^{64} - 1
 \внекурса{Самостоятельно 
 их освойте после прохождения DSIS направления.}
 \end{frame}
+
+
+\section{Основные комбинаторные схемы}\label{section:main_combinatorics_sxems}
 
 
 \begin{frame}{Размещение (выборка без возвращения)}
@@ -308,26 +317,62 @@ $n$
 	
 \end{frame}
 
-\section{Бином Ньютона}
+\begin{frame}{Out of scope}
+	
+Мы не рассматриваем числа стирлинга 1-го и 2-го родов.
+
+\внекурса{Самостоятельно 
+		их освойте после прохождения DSIS направления.}
+\end{frame}
+
+\section{Бином Ньютона}\label{section:binom}
 
 \begin{frame}
 
-\begin{equation}
+Бином Ньютона:
+\begin{equation}\label{eq:binom}
 \left( x + y\right)^n = \sum_{k=0}^{k=n} C_n^k \cdot x^{n-k} \cdot y^{k}
 \end{equation}
 
 Доказательство
 \begin{equation*}
-\left( x + y\right)^2 = x^2 + 2xy + y^2 = C_{2}^0 x^2 y^0 + C_{2}^{1} xy + C_{2}^{2}x^0y^2
-\left( x + y\right)^3 = x^3 + 3x^2  
+\begin{matrix}
+\left( x + y\right)^2 = x^2 + 2xy + y^2 = C_{2}^0 x^2 y^0 + C_{2}^{1} xy + C_{2}^{2}x^0y^2 \\
+\left( x + y\right)^3 = x^3 + 3x^2y + 3xy^2 + y^3 = C_{3}^{0}x^3y^0 + C_{3}^{1}x^2y + C_{3}^{2}xy^2 + C_{3}^{3}x^0y^3  
+\end{matrix}
 \end{equation*}
 
 \дз{дома самостоятельно распишите $\left( x + y\right)^4$ и $\left( x + y\right)^5$}
 
+База индукции есть.
+
+Предположим, что верно 
+\begin{equation}\label{eq:binom_prev}
+\left( x + y\right)^(n-1) = \sum_{k=0}^{k=n-1} C_{(n-1)}^k \cdot x^{n-1-k} \cdot y^{k}
+\end{equation}
+тогда нужно из формулы \eqref{eq:binom_prev}
+вывести формулу \eqref{eq:binom}
+
+\дз{сделайте это!}
+\end{frame}
+
+\begin{frame}
+Бином Ньютона полезен для доказательства разных формул.	
+
+Например подставим $x=1$ и $y=1$ в формулу \eqref{eq:binom}.
+Получим:
+\begin{equation}
+\begin{matrix}
+(1+1)^n = \sum_{k=0}^{k=n} C_n^k \cdot 1^{n-k} \cdot 1^{k} \\
+2^n = \sum_{k=0}^{k=n} C_n^k
+\end{matrix}
+\end{equation}
+
+
 \end{frame}
 
 
-\section{Вопросы для самопроверки}
+%\section{Вопросы для самопроверки}
 
 % \begin{frame}
 % TODO
@@ -349,11 +394,52 @@ $n$
 
 \end{frame}
 
+\begin{frame}{Задачки}
+Задачки желательно попробовать решить самому.
+Если не получается -- посмотреть у товарища, но ПРОРАБОТАТЬ
+их ВСЕ!
+
+Докажите \term{свойство симметрии} биномиальных коэфициентов, то есть:
+\begin{equation}
+C_{n}^{k} = C_{n}^{n-k}
+\end{equation}
+
+Докажите \term{рекурентное соотношение}:
+\begin{equation}
+C_{n}^{k} = C_{n-1}^{k-1} + C_{n-1}^{k}
+\end{equation}
+
+Если $n$ четное, то используя Бином Ньютона докажите:
+\begin{equation}\label{eq:binom_pears}
+C_n^{0} + C_n^{2} + C_n^{4} + C_n^{6} + ... + C_n^{n} = C_n^{1} + C_n^{3} + ... + C_n^{n-1}
+\end{equation}
+
+Если $n$ -- нечётное, то как измениться формула \eqref{eq:binom_pears}?
+
+\end{frame}
+
+\begin{frame}{Задачка (*) Свёртка Вандермонда}
+Опциональное ДЗ для особо продвинутых.
+	
+Попробуйте доказать Свёртку Вандермонда:
+\begin{equation}
+\sum_{j=0}^{j=n} C_{n}^{j} C_{m}^{k-j} = C_{n+m}^{k}
+\end{equation}
+
+
+\end{frame}
+
 \section{Список материалов}
 
-% \begin{frame}
-% TODO
-% \end{frame}
+\begin{frame}
+
+Методичка: <<Элементы комбинаторики>> (А.Е.Жуков, Д.А.Жуков, 2014)
+
+Калкулятор биномиальных коэфициентов: \url{https://www.omnicalculator.com/math/binomial-coefficient}
+
+Стандартная библиотека Python itertools: \url{https://docs.python.org/3/library/itertools.html}
+
+\end{frame}
 
   
 \end{document}
