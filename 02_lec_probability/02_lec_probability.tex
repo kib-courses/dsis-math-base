@@ -125,6 +125,70 @@ $\sigma$-алгебру событий
 	\end{enumerate}
 \end{frame}
 
+\begin{frame}{Совместные события}
+\small
+
+$P(AB)$ -- вероятность того, что произойдёт и А и B одновременно
+(Так же обозначают как $P(A\bigcap B)$)
+
+%\includegraphics[width=0.4\textwidth]{./../pic/pAB_diargramm.drawio.png}
+
+$P(A|B)$ -- вероятность того, что произойдёт $A$, при условии что уже произошло $B$
+
+$P(B|A)$ -- вероятность того, что произойдёт $B$, при условии, что уже произошло $A$
+
+\дз{ДЗ. Почему верны формулы?:}
+\begin{equation}\label{eq:P_A_by_B}
+P(A|B) = \frac{P(AB)}{P(B)}
+\end{equation}
+\begin{equation}\label{eq:P_B_by_A}
+P(B|A) = \frac{P(AB)}{P(A)}
+\end{equation}
+
+	
+\end{frame}
+
+\begin{frame}{Независимые события}
+	
+События $A$ и $B$ независимы, если 
+наступление события $A$ никак не влияет на вероятность $B$,
+а наступление события $B$ никак не влияет на $A$;
+т.е на языке математики:
+\begin{equation*}
+P(A|B) = P(A)
+\end{equation*}
+\begin{equation*}
+P(B|A) = P(B)
+\end{equation*}
+
+Для \textbf{независимых} событий из формул 
+\eqref{eq:P_A_by_B} и \eqref{eq:P_B_by_A}
+верно:
+\begin{equation}
+P(AB) = P(A) \cdot P(B)
+\end{equation}
+
+%\includegraphics[width=0.4\textwidth]{./../pic/pApB_independet_diargramm.drawio.png}
+
+\end{frame}
+
+\begin{frame}{Несовместные события}
+\end{frame}
+
+
+\begin{frame}{Связь теор.вера с комбинаторикой}
+
+ \term{Правило суммы}. Если событие $a_i$ и $a_j$ не могут произойти одновременно, 
+ то тогда вероятность того, что произойдёт хотя бы одно из событий:
+ \begin{equation}
+ P(a_i \vee a_j) = P(a_i) + P(a_j)
+ \end{equation}
+
+
+\textbf{}
+
+\end{frame}
+
 
 
 
