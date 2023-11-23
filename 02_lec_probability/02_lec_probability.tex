@@ -19,14 +19,16 @@
   \begin{frame}{План лекции}\label{frame:plan}
   	% TODO ! добавте в план все ваши секции, кроме "Вопросы для самопроверки", "Домашнее задание" и "Список материалов"
     \begin{enumerate}
-	\item \nameref{section:why_combinatorics}
+	% \item \nameref{section:why_combinatorics}
+	\item \nameref{section:probability}
+	\item \nameref{section:Bayes}
 	
 	\item \nameref{section:manipulations}
 
 	\end{enumerate}
  \end{frame}
 
-\begin{frame}{Важное замечание}
+\begin{frame}{Важное замечание 1}
 Лекция будет сильно упрощена, 
 рассказана
 <<на пальцах>>.
@@ -41,6 +43,38 @@ $\sigma$-алгебру событий
 На это нет времени.
 
 \end{frame}
+
+\begin{frame}[fragile,t]{Важное замечание 2}
+	
+	\вопрос{Верно ли утверждение?:}
+	\begin{equation*}
+	a \cdot b = c ~\Longrightarrow~ a = \frac{b}{c}
+	\end{equation*}
+	
+	
+	
+\end{frame}
+
+\begin{frame}[fragile,t]{Важное замечание 2}
+	
+	\вопрос{Верно ли утверждение?:}
+	\begin{equation*}
+	a \cdot b = c ~\Longrightarrow~ a = \frac{b}{c}
+	\end{equation*}
+	
+	Нет не верно!
+	
+	Правильно:
+	\begin{equation*}
+	a \cdot b = c ~\Longrightarrow~ a = \frac{b}{c} \vee (b=0 \wedge c =0)
+	\end{equation*}
+	
+	Но... во всей лекции мы не будем такими занудами... :)
+	
+	
+\end{frame}
+
+
     
   
 \section{Зачем нужна теория вероятности в DS}\label{section:why_probability}
@@ -54,14 +88,16 @@ $\sigma$-алгебру событий
 \end{itemize}
 \end{frame}
 
-\section{Вероятности}
+\section{Вероятность. Априорная и апостариорная веростности. Условная вероятность. Правило сложения и суммы}\label{section:probability}
 
 \begin{frame}{Вероятность}
-	Есть множество событий: $a_1, ..., a_n$.
-	Вероятностью события $P(a_i)$ -- это действительное число, обладающее следующими свойствами:
+	Есть некий процесс, который всегда заканчивается определённым исходом : $a_1, ..., a_{n-1}$ или $a_n$.
+	Будем эти исходы называть \termdef{событиями}.
+	
+	\termdef{Вероятность [события]} $P(a_i)$ -- это действительное число, обладающее следующими свойствами:
 \begin{enumerate}
-	\item $\forall a_i \in \left\{a_1, ..., a_n \right\} \rightarrow P(a_i) \in [0, 1]$
-	\item $\forall b \notin \left\{a_1, ..., a_n \right\} \rightarrow P(b) = 0$
+	\item $\forall a_i \in \left\{a_1, ..., a_n \right\} ~\Longrightarrow~ P(a_i) \in [0, 1]$
+	\item $\forall b \notin \left\{a_1, ..., a_n \right\} ~\Longrightarrow~ P(b) = 0$
 	\item $\sum_{i=1}^{i=n}\left(P(a_i)\right) = 1$
 \end{enumerate}
 
@@ -72,6 +108,38 @@ $\sigma$-алгебру событий
 <<прикреплённые>> к событиям.
 Они могут оказатся <<адекватными>> (насколько?)
 или <<не адекватными>>.
+
+\end{frame}
+
+\begin{frame}{Вероятность. (Доп.слайд для зануд)}
+\footnotesize
+Вообще-то любое множество ${a_1, ..., a_n}$  
+можно дополнить любым ${c_1, ..., c_m}$, 
+таким что:
+\begin{equation*}
+	 \forall c \in \left\{c_1, ..., c_m \right\} ~\Longrightarrow~ P(c) = 0
+\end{equation*}
+
+Например $(a_1, a_2)$ -- это события, 
+что [не мошенническая] монетка
+упадёт орлом или решкой. Тогда $P(a_1) = P(a_2) = \frac{1}{2}$.
+
+Мы можем дополнить событиями:
+\begin{itemize}
+	\item $c_1$ -- событие, что монета упадёт ребром;
+	\item $c_2$ -- событие, что монета прилипнет к потолку;
+	\item $c_3$ -- событие, что монета улетит в открытый космос и вообще не упадёт;
+	\item ... \вопрос{ещё примеры?}
+\end{itemize}
+
+По этой причине первую формулу лучше определять не так:
+\begin{equation*}
+ \forall a_i \in \left\{a_1, ..., a_n \right\} ~\Longrightarrow~ P(a_i) \in [0, 1]
+\end{equation*}
+а так:
+\begin{equation*}
+\forall a_i \in \left\{a_1, ..., a_n \right\} ~\Longrightarrow~ P(a_i) \in (0, 1]
+\end{equation*}
 
 \end{frame}
 
@@ -111,11 +179,12 @@ $\sigma$-алгебру событий
 
 \begin{frame}{Апостериорная вероятность}
 	\small
-	\termdef{Апостериорная вероятность} -- статистическая вероятность\footnote{
+	\termdef{Апостериорная вероятность} -- статистическая величина\footnote{
 		Вообще то говоря, апостериорная вероятность имеет более глубокий и широкий смысл.
 		Но в рамках нашего курса апостериорная вероятность -- это просто статистическая доля того или иного события.}, посчитанная на каких-либо конкретных данных.
 	
-	Примеры: \small
+	Примеры: 
+	\footnotesize
 	\begin{enumerate}
 		\item Мы 100 раз подбросили монету и 47 раз выпал орёл. Следовательно 
 		вероятность выпадения орла 0.47
@@ -125,13 +194,23 @@ $\sigma$-алгебру событий
 	\end{enumerate}
 \end{frame}
 
-\begin{frame}{Совместные события}
-\small
+\begin{frame}{Совместные и несовместные события}
+
 
 $P(AB)$ -- вероятность того, что произойдёт и А и B одновременно
 (Так же обозначают как $P(A\bigcap B)$)
 
 %\includegraphics[width=0.4\textwidth]{./../pic/pAB_diargramm.drawio.png}
+
+\begin{itemize}
+	\item $A$ и $B$ -- \termdef{совместные события}, если $P(AB) > 0$
+	\item $A$ и $B$ -- \termdef{несовместные события}, если $P(AB) = 0$
+\end{itemize}
+
+
+
+\end{frame}
+\begin{frame}{Условная вероятность}
 
 $P(A|B)$ -- вероятность того, что произойдёт $A$, при условии что уже произошло $B$
 
@@ -172,23 +251,68 @@ P(AB) = P(A) \cdot P(B)
 
 \end{frame}
 
-\begin{frame}{Несовместные события}
-\end{frame}
 
 
-\begin{frame}{Связь теор.вера с комбинаторикой}
 
- \term{Правило суммы}. Если событие $a_i$ и $a_j$ не могут произойти одновременно, 
+\begin{frame}{Правило суммы и правило сложения}
+
+ \termdef{Правило суммы}. Если $A$ и $B$ \term{несовместные} события, 
  то тогда вероятность того, что произойдёт хотя бы одно из событий:
- \begin{equation}
- P(a_i \vee a_j) = P(a_i) + P(a_j)
+ \begin{equation}\label{eq:rule_summ}
+ P(A \vee B) = P(A) + P(B)
  \end{equation}
 
-
-\textbf{}
+ \termdef{Правило умножения}. Если $A$ и $B$ \term{независимые} события, 
+ то тогда вероятность того, что произойдёт хотя бы одно из событий:
+ \begin{equation}\label{eq:rule_cdot}
+ P(A B) = P(A) \cdot P(B)
+ \end{equation}
+ 
+ \дз{ДЗ. Почему формулы \eqref{eq:rule_summ} и \eqref{eq:rule_cdot} верны?}
 
 \end{frame}
 
+\begin{frame}{Вопросы на засыпку}
+\дз{Подумайте дома, разбирая эту лекцию.}
+
+Назовём \underline{три} события $A$, $B$, $C$ независимыми, если:
+\begin{equation}
+P (A B C) = P(A) \cdot P(B) \cdot P(C)
+\end{equation}
+
+Верны ли утверждения?
+\begin{enumerate}
+	\item Если $A$, $B$, $C$ -- независимы, то они все пары из них -- независимы
+	\item Если $A$, $B$, $C$ -- независимы, то есть хотя бы одна пара независимых событий
+	\item Если любая пара из ${A, B, C}$ -- независимы, то все три $A, B, C$ -- независимы.
+\end{enumerate}
+
+\end{frame}
+
+
+\section{Формула Байеса}\label{section:Bayes}
+
+\begin{frame}
+\textbf{То́мас Ба́йес}
+(Thomas Bayes; \textbf{1702 -- 1761}) 
+— английский математик, священник. 
+Член Лондонского королевского общества.
+	
+\begin{equation}\label{eq:Bayes}
+P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
+\end{equation}
+
+$\blacktriangleleft$
+Из формул \eqref{eq:P_A_by_B} и \eqref{eq:P_B_by_A}
+получаем:
+\begin{equation*}
+P(A|B)P(B) = P(AB) = P(B|A) P(A)
+\end{equation*}
+откуда получаем \eqref{eq:Bayes}.
+$\blacktriangleright$
+
+
+\end{frame}
 
 
 
