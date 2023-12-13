@@ -1,0 +1,186 @@
+\input{./../header/kib.tex}
+\input{./../header/user.tex}  
+
+% TODO ! напишите здесь название вашей лекции
+\title{Лекция 4. Алгоритмы и структуры данных. Часть 1}
+% TODO ! замените на дату проведения этой лекции. Например \date{14 апреля 2019}
+\date{15.12.2023}
+% \logo{\href{https://t.me/kibinfo}{\includegraphics[width=.05\textwidth]{./../pic/kib_logo.png}}}
+\author{Слипенчук Павел Владимирович}
+\institute{\centering \includegraphics[width=.2\textwidth]{./../pic/kib_logo.png} \\ Москва,\\ \href{https://t.me/kibinfo}{\textbf{КИБ}} }
+% \titlegraphic{\href{https://t.me/kibinfo}{\includegraphics[width=.05\textwidth]{./../pic/kib_logo.png}}}
+
+% TODO ! замените https://github.com/kib-courses/latex_templates на ссылку ВАШЕГО спецкурса!
+\titlegraphic{\small \href{https://github.com/kib-courses/dsis-math-base}{Базовая математическая подготовка для Data Science}}
+
+\begin{document}
+  \maketitle
+    
+
+
+\begin{frame}{План лекции}\label{frame:plan}
+	% TODO ! добавте в план все ваши секции, кроме "Вопросы для самопроверки", "Домашнее задание" и "Список материалов"
+	\begin{enumerate}
+		
+		\item \nameref{section:introduction}
+		\item \nameref{section:base_alg}
+		\item \nameref{section:examples_1}
+		\item \nameref{section:base_principles}
+		\item \nameref{sections:base_problems}
+		
+	\end{enumerate}
+\end{frame}
+
+\section{Вводная. Список литературы.}\label{section:introduction}
+
+\begin{frame}{Самая важная тема сегодняшней лекции...}
+	\вопрос{А зачем вообще специалисту DSIS нужно глубоко знать алгоритмы и структуры данных? Все же есть в framework-ах!}
+\end{frame}
+
+
+\begin{frame}
+\footnotesize
+Алгоритмы и структуры данных -- несложный, но длинный курс в 1-2 семестра. 
+За две лекции прочитать его невозможно. 
+
+Цели двух лекций:
+\begin{enumerate}
+	\item ~<<Галопом по Европам>> -- рассказать о направлениях в этой дисциплине
+	\item Методология АиСД -- научить учится.
+\end{enumerate}
+
+Методички (освоить в новогодние праздники):
+\begin{enumerate}
+	\item Фофанов О.Б. <<Алгоритмы и структуры данных. Учебное пособие>>, 123 с., Издательство ТПУ, 2014
+	\item Бабичев С.Л. <<Лекции по алгоритмам и структурам данных>>, 394 с., самиздат, 2022
+\end{enumerate}
+
+\begin{block}{Замечание}
+Первая работа очень простая и позволит быстро "въехать" в тему. 
+Вторая -- методичка из Техносферы (МГУ) -- подготовка к "серьёзной книге" (см.след.слайд)
++ Обязательно прочитайте введение в кажой из них!
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}{<<Серьезная книга>>}
+
+%TODO таблица -- картинка слева, текст справа
+
+\includegraphics[width=0.4\textwidth]{./../pic/Kormen_3_edition_book_img.png}
+<<Алгоритмы. Построение и анализ>>
+Томас Кормен
+Чарльз Лайзерсон
+Рональд Ривест
+Клиффорд Штайн.
+
+\begin{block}{Замечание}
+	Обязательно купите в бумаге 
+	и медленно-медленно читайте...
+	Возможно чтение займёт около года -- не пугайтесь. Оно того стоит!
+\end{block}
+
+\end{frame}
+
+
+
+\section{Базовые понятия}\label{section:base_alg}
+
+\begin{frame}{Алгоритм}
+Алгоритм
+
+Свойства алгоритма	
+\end{frame}
+
+\begin{frame}{Элементарные операции}
+	
+\end{frame}
+
+\begin{frame}{Цена деления}
+Деление -- сложная и дорогая вычислительная операция.
+
+\begin{block}{Замечание}
+Но не всегда так. 
+Есть "табличный метод",
+есть ПЛИС, видеокарты и т.д.
+
+В которых \textbf{частные} случаи деления происходят быстро.
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Табличные и полутабличные методы}
+	Табличный метод -- мы не вычисляем, а просто создаём большую-пребольшую таблицу (сложения, умножения, деления, возведения в степень и т.д.)
+	
+	\вопрос{Каковы преимущества и недостатки табличного метода? Когда невозможно использовать табличный методо?}
+	
+	Полутабличный метод -- мы частично используем таблицу, частично вычисляем.
+	
+	\вопрос{Можете привести пример? (см пример на слайде №\ref{frame:example_table_method})}.
+\end{frame}
+
+
+
+\section{Некотороые примеры}\label{section:examples_1}
+
+\begin{frame}{Простой полутабличный алгоритм деления}\label{frame:example_table_method}
+	Есть некое $N$, не слишком большое, чтобы таблицу $O(N)$ уместить в памяти.
+	
+	Есть некое плечо $l>>0$. Рассматриваем числа меньшие $l \cdot N$. 
+	Можно построить упорядоченный вектор(список) этих чисел:
+	\begin{equation}\label{eq:example_table_method_vector_def}
+	(B_0=0, B_1 = l, B_2 = 2 \cdot l, ... B_i = i \cdot l, ..., B_N = N \cdot l )
+	\end{equation} 
+	
+	Тогда любой $B_i$ можно вычислить по формуле:
+	\begin{equation}\label{eq:example_table_method_B_i}
+	\frac{B_i}{c} = \frac{i \cdot l}{c} = i \cdot \frac{l}{c}
+	\end{equation}
+	
+	
+ 
+ 	\textbf{Задача.} Число $A < l \cdot N$ нужно разделить на $c<l$.
+ 	\вопрос{Как решить эту задачу с помощью вектора \eqref{eq:example_table_method_vector_def} и таблицы \eqref{eq:example_table_method_B_i}?}
+	
+	...
+\end{frame}
+\begin{frame}
+ 	...
+ 	
+ 	Решение. Можно заметить, что 
+ 	\begin{equation}
+ 	\exists i<l, \exists v<l: A = B_i+v
+ 	\end{equation}
+ 	Тогда верно:
+ 	\begin{equation}
+ 	\frac{A}{c} = \frac{B_i+v}{c} = \frac{B_i}{c} + \frac{v}{c} = i \cdot \frac{l}{c} + \frac{v}{c}
+ 	\end{equation}
+ 	
+ 	C помощью алгоритма поиска можно найти $B_i$ такой что: $B_i <= A < B_{i+1}$ % TODO знак <= на нормальный.
+ 	
+ 	Операция умножения дешёвая, операции деления $l$ и $v$ тоже не сильно догорие, 
+ 	так как $v<l$
+ 	
+ 	\дз{Посчитайте сложность этого алгоритма.}
+ 	
+ 
+		
+	
+\end{frame}
+
+\section{Базовые принцыпы}\label{section:base_principles}
+
+\section{Базовые проблемы}\label{sections:base_problems}
+
+% \section{Ещё примеры}
+
+
+
+
+
+\section{Понятия из ML: признак, вектор признаков, выборка.}\label{section:ml_defs}
+
+
+
+\end{document}
